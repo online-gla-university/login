@@ -126,7 +126,7 @@
 
 
 
-        /* ======== NEW: Top Logo & Banner for Login ======== */
+        /* ======== Top Logo Container for Login ======== */
 
         #mani-ebook-widget .top-brand-container {
 
@@ -141,6 +141,10 @@
             background: rgba(0,0,0,0.4); 
 
             backdrop-filter: blur(5px);
+
+            /* Added border bottom since banner is removed */
+
+            border-bottom: 3px solid var(--primary-color); 
 
         }
 
@@ -166,17 +170,7 @@
 
 
 
-        #mani-ebook-widget .header-banner {
-
-            width: 100%;
-
-            height: 120px;
-
-            object-fit: cover;
-
-            border-bottom: 3px solid var(--primary-color);
-
-        }
+        /* login-banner class removed from CSS */
 
 
 
@@ -284,7 +278,7 @@
 
 
 
-        /* ======== NEW: Grouping Right side controls (PC Default) ======== */
+        /* ======== Grouping Right side controls (PC Default) ======== */
 
         #mani-ebook-widget .header-right-controls {
 
@@ -307,8 +301,6 @@
             cursor: pointer; 
 
             pointer-events: auto; 
-
-            /* Not positioned absolute here for PC */
 
         }
 
@@ -333,16 +325,6 @@
         }
 
         #mani-ebook-widget .profile-pic:hover { transform: scale(1.05); box-shadow: 0 6px 15px rgba(0,123,255,0.3); }
-
-
-
-        /* Logout Container Default (PC) */
-
-        #mani-ebook-widget .logout-container {
-
-            /* flows below profile pic naturally on PC */
-
-        }
 
 
 
@@ -390,7 +372,7 @@
 
 
 
-        /* Book List - Updated for new layout */
+        /* Book List */
 
         #mani-ebook-widget .book-card { display: flex; flex-direction: row; background: var(--card-bg); margin-bottom: 20px; border-radius: 12px; padding: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-color); align-items: flex-start; gap: 20px; text-align: left; transition: transform 0.3s, box-shadow 0.3s; overflow: hidden; }
 
@@ -407,8 +389,6 @@
         #mani-ebook-widget .book-details .author-name { font-size: 15px; margin-bottom: 10px; color: #333; font-weight: bold; }
 
         
-
-        /* Description styling with line clamp to keep UI clean */
 
         #mani-ebook-widget .book-details .book-desc-text { 
 
@@ -486,7 +466,7 @@
 
         #mani-ebook-widget .modal-content input:focus, #mani-ebook-widget .modal-content textarea:focus { border-color: var(--primary-color); background: #fff; outline: none; }
 
-        #mani-ebook-widget .modal-content textarea { resize: vertical; } /* Allow resizing vertically */
+        #mani-ebook-widget .modal-content textarea { resize: vertical; } 
 
         #mani-ebook-widget .modal-btns { display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px; }
 
@@ -512,7 +492,7 @@
 
 
 
-            /* ======== NEW: Mobile Layout for Header Controls ======== */
+            /* ======== Mobile Layout for Header Controls ======== */
 
             #mani-ebook-widget .header-right-controls {
 
@@ -520,17 +500,15 @@
 
                 gap: 0;
 
-                width: 100%; /* Important for internal positioning */
+                width: 100%; 
 
-                justify-content: flex-end; /* Logout stays right */
+                justify-content: flex-end; 
 
-                position: relative; /* Context for profile pic */
+                position: relative; 
 
             }
 
 
-
-            /* Restore OLD MOBILE view (Profile in Center) but with TOP SPACING */
 
             #mani-ebook-widget .profile-section { 
 
@@ -540,23 +518,15 @@
 
                 transform: translateX(-50%);
 
-                top: 15px; /* REQUIREMENT: Move profile picture slightly down on mobile */
+                top: 15px; 
 
             }
 
 
 
-            /* Original mobile picture size */
-
             #mani-ebook-widget .profile-pic { width: 60px; height: 60px; }
 
 
-
-            /* Logout container on mobile flows right naturally via flex-end of parent */
-
-            
-
-            /* Other mobile existing styles */
 
             #mani-ebook-widget .dashboard-tools { flex-direction: column; text-align: center; }
 
@@ -574,7 +544,9 @@
 
             #mani-ebook-widget .card-actions button svg { width: 22px; height: 22px; }
 
-            #mani-ebook-widget .header-banner { height: 90px; }
+            
+
+            /* Banner responsive height removed since element is removed */
 
         }
 
@@ -597,10 +569,6 @@
         </div>
 
         
-
-        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&h=200&q=80" class="header-banner" alt="Banner">
-
-
 
         <div class="login-box-container">
 
@@ -1291,8 +1259,6 @@
         }
 
 
-
-        // ---UPDATED Modal Logic ---
 
         function wOpenBookModal() {
 
