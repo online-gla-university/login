@@ -1,0 +1,1388 @@
+<div id="mani-ebook-widget" oncontextmenu="return false;" oncopy="return false;" oncut="return false;">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+
+    <style>
+
+        /* --- SCOPED CSS: यह आपकी बाकी वेबसाइट को खराब नहीं करेगा --- */
+
+        #mani-ebook-widget {
+
+            --primary-color: #007bff;
+
+            --success-color: #28a745;
+
+            --danger-color: #dc3545;
+
+            --border-color: #e0e0e0;
+
+            --card-bg: #ffffff;
+
+            --bg-color: #ffffff; 
+
+            --text-color: #333;
+
+            --hover-shadow: 0 12px 25px rgba(0,0,0,0.12);
+
+            
+
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+
+            color: var(--text-color);
+
+            background-color: var(--bg-color);
+
+            position: relative;
+
+            min-height: 100vh;
+
+            overflow-x: hidden;
+
+            
+
+            /* Anti-copy & Smooth Scrolling */
+
+            -webkit-user-select: none;
+
+            -moz-user-select: none;
+
+            -ms-user-select: none;
+
+            user-select: none; 
+
+            scroll-behavior: smooth;
+
+            -webkit-overflow-scrolling: touch;
+
+            
+
+            /* Anti-Zoom: Allows vertical scroll but disables pinch-zoom */
+
+            touch-action: pan-y; 
+
+        }
+
+
+
+        #mani-ebook-widget * { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+
+        /* Allow typing in inputs */
+
+        #mani-ebook-widget input, 
+
+        #mani-ebook-widget select,
+
+        #mani-ebook-widget textarea {
+
+            -webkit-user-select: auto;
+
+            -moz-user-select: auto;
+
+            -ms-user-select: auto;
+
+            user-select: auto;
+
+            background: var(--card-bg);
+
+            color: var(--text-color);
+
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+
+        }
+
+
+
+        /* Prevent Image Saving/Dragging */
+
+        #mani-ebook-widget img { pointer-events: none; -webkit-user-drag: none; }
+
+
+
+        /* Preloader */
+
+        #mani-ebook-widget .preloader { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color); display: flex; justify-content: center; align-items: center; z-index: 9999; }
+
+        #mani-ebook-widget .loader { border: 6px solid #f3f3f3; border-top: 6px solid var(--primary-color); border-radius: 50%; width: 70px; height: 70px; animation: widgetSpin 1s linear infinite; }
+
+        @keyframes widgetSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+
+
+        /* Toast Notifications */
+
+        #mani-ebook-widget .toast-container { position: fixed; top: 20px; right: 20px; z-index: 10000; pointer-events: none; }
+
+        #mani-ebook-widget .toast { background: var(--card-bg); color: var(--text-color); padding: 15px 25px; border-left: 5px solid var(--primary-color); border-radius: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.15); margin-bottom: 10px; transform: translateX(120%); transition: transform 0.3s ease; display: flex; align-items: center; gap: 10px; font-size: 15px; border: 1px solid var(--border-color); }
+
+        #mani-ebook-widget .toast.show { transform: translateX(0); }
+
+        #mani-ebook-widget .toast.error { border-left-color: var(--danger-color); }
+
+        #mani-ebook-widget .toast.success { border-left-color: var(--success-color); }
+
+
+
+        /* ======== NEW: Top Logo & Banner for Login ======== */
+
+        #mani-ebook-widget .top-brand-container {
+
+            width: 100%;
+
+            padding: 10px 20px;
+
+            display: flex;
+
+            justify-content: flex-start;
+
+            background: rgba(0,0,0,0.4); 
+
+            backdrop-filter: blur(5px);
+
+        }
+
+        
+
+        #mani-ebook-widget .brand-logo-img {
+
+            width: 50px;
+
+            height: 50px;
+
+            object-fit: contain; 
+
+            background: #fff;
+
+            border-radius: 8px;
+
+            padding: 4px;
+
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+
+        }
+
+
+
+        #mani-ebook-widget .header-banner {
+
+            width: 100%;
+
+            height: 120px;
+
+            object-fit: cover;
+
+            border-bottom: 3px solid var(--primary-color);
+
+        }
+
+
+
+        /* Login Portal */
+
+        #mani-ebook-widget .login-portal { 
+
+            display: none; 
+
+            min-height: 100vh; 
+
+            flex-direction: column; 
+
+            background: url('https://images.unsplash.com/photo-1456953180671-730de08edaa7?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed;
+
+        }
+
+        
+
+        #mani-ebook-widget .login-box-container {
+
+            flex-grow: 1;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: flex-start; 
+
+            padding: 4vh 15px 15px; 
+
+        }
+
+
+
+        /* Smaller Login Box */
+
+        #mani-ebook-widget .login-box { background: var(--card-bg); padding: 25px 20px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid var(--border-color); text-align: center; width: 100%; max-width: 320px; }
+
+        #mani-ebook-widget .login-box img { width: 65px; margin-bottom: 12px; }
+
+        #mani-ebook-widget .login-box h2 { margin-bottom: 20px; font-size: 22px; color: var(--text-color); }
+
+        #mani-ebook-widget .login-box input { width: 100%; padding: 12px; margin-bottom: 8px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px; outline: none; transition: 0.3s; background: #fafafa; }
+
+        #mani-ebook-widget .login-box input:focus { border-color: var(--primary-color); background: #fff; }
+
+        #mani-ebook-widget .login-box input.invalid { border-color: var(--danger-color); }
+
+        #mani-ebook-widget .error-text { color: var(--danger-color); font-size: 12px; text-align: left; display: block; margin-bottom: 12px; height: 14px; }
+
+        
+
+        #mani-ebook-widget .login-box button { width: 100%; padding: 12px; background: var(--primary-color); color: #fff; border: none; border-radius: 6px; font-size: 15px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-bottom: 12px;}
+
+        #mani-ebook-widget .login-box button:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,123,255,0.4); }
+
+        
+
+        #mani-ebook-widget .login-box .btn-signup { background: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); margin-bottom: 0;}
+
+        #mani-ebook-widget .login-box .btn-signup:hover { background: var(--primary-color); color: #fff; }
+
+
+
+        /* Footer */
+
+        #mani-ebook-widget .login-footer { text-align: center; padding: 12px; color: #ffffff; font-size: 13px; letter-spacing: 1px; opacity: 0.9; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); }
+
+
+
+        /* Dashboard & Header */
+
+        #mani-ebook-widget .dashboard { display: none; min-height: 100vh; flex-direction: column; background-color: var(--bg-color); }
+
+        
+
+        /* Updated Header for PC/Mobile separation */
+
+        #mani-ebook-widget header { 
+
+            background: var(--card-bg); 
+
+            padding: 15px 25px; 
+
+            display: flex; 
+
+            justify-content: space-between; /* Space between logo and right controls */
+
+            align-items: center; 
+
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+
+            border-bottom: 1px solid var(--border-color);
+
+            position: relative; 
+
+            z-index: 100; 
+
+        }
+
+
+
+        #mani-ebook-widget .dash-logo img { width: 45px; height: 45px; object-fit: contain; }
+
+
+
+        /* ======== NEW: Grouping Right side controls (PC Default) ======== */
+
+        #mani-ebook-widget .header-right-controls {
+
+            display: flex;
+
+            flex-direction: column; /* Stack vertically on PC */
+
+            align-items: center;
+
+            gap: 8px; /* Space between picture and button */
+
+        }
+
+
+
+        /* Profile Section Default (PC) */
+
+        #mani-ebook-widget .profile-section { 
+
+            cursor: pointer; 
+
+            pointer-events: auto; 
+
+            /* Not positioned absolute here for PC */
+
+        }
+
+
+
+        #mani-ebook-widget .profile-pic { 
+
+            width: 80px; 
+
+            height: 80px; 
+
+            border-radius: 50%; 
+
+            object-fit: cover; 
+
+            border: 3px solid var(--primary-color); 
+
+            transition: 0.3s; 
+
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+
+        }
+
+        #mani-ebook-widget .profile-pic:hover { transform: scale(1.05); box-shadow: 0 6px 15px rgba(0,123,255,0.3); }
+
+
+
+        /* Logout Container Default (PC) */
+
+        #mani-ebook-widget .logout-container {
+
+            /* flows below profile pic naturally on PC */
+
+        }
+
+
+
+        #mani-ebook-widget .btn-logout { 
+
+            padding: 8px 15px; 
+
+            background: var(--danger-color); 
+
+            color: #fff; 
+
+            border-radius: 6px; 
+
+            font-size: 14px; 
+
+            font-weight: bold; 
+
+            cursor: pointer; 
+
+            border: none; 
+
+            transition: 0.3s; 
+
+            box-shadow: 0 3px 8px rgba(220,53,69,0.3); 
+
+        }
+
+        #mani-ebook-widget .btn-logout:hover { opacity: 0.8; transform: translateY(-2px); }
+
+
+
+        #mani-ebook-widget .main-container { padding: 30px 20px; max-width: 1200px; margin: 0 auto; width: 100%; flex: 1; }
+
+        
+
+        #mani-ebook-widget .dashboard-tools { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px; border-bottom: 2px solid var(--border-color); padding-bottom: 15px; }
+
+        #mani-ebook-widget .author-greeting h2 { font-size: 28px; color: var(--primary-color); text-transform: capitalize; margin-bottom: 5px;}
+
+        #mani-ebook-widget .greeting-subtitle { font-size: 16px; color: #666; font-weight: 500; }
+
+        #mani-ebook-widget .btn-add-book { padding: 12px 24px; background: var(--primary-color); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 16px; transition: 0.3s; pointer-events: auto; box-shadow: 0 4px 12px rgba(0,123,255,0.3); }
+
+        #mani-ebook-widget .btn-add-book:hover { background: #0056b3; transform: translateY(-2px); }
+
+
+
+        /* Book List - Updated for new layout */
+
+        #mani-ebook-widget .book-card { display: flex; flex-direction: row; background: var(--card-bg); margin-bottom: 20px; border-radius: 12px; padding: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-color); align-items: flex-start; gap: 20px; text-align: left; transition: transform 0.3s, box-shadow 0.3s; overflow: hidden; }
+
+        #mani-ebook-widget .book-card:hover { transform: translateY(-4px); box-shadow: var(--hover-shadow); border-color: var(--primary-color); }
+
+        #mani-ebook-widget .book-card img { width: 100px; height: 150px; object-fit: cover; border-radius: 8px; flex-shrink: 0; box-shadow: 0 3px 8px rgba(0,0,0,0.15); }
+
+        
+
+        #mani-ebook-widget .book-details { flex: 1; min-width: 0; padding-top: 5px; }
+
+        #mani-ebook-widget .book-details h3 { margin-bottom: 8px; color: var(--primary-color); font-size: 22px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+
+        #mani-ebook-widget .book-details .author-name { font-size: 15px; margin-bottom: 10px; color: #333; font-weight: bold; }
+
+        
+
+        /* Description styling with line clamp to keep UI clean */
+
+        #mani-ebook-widget .book-details .book-desc-text { 
+
+            font-size: 14px; 
+
+            color: #666; 
+
+            line-height: 1.5; 
+
+            display: -webkit-box;
+
+            -webkit-line-clamp: 3; /* Limits description to 3 lines */
+
+            -webkit-box-orient: vertical;
+
+            overflow: hidden;
+
+        }
+
+
+
+        #mani-ebook-widget .card-actions { flex-shrink: 0; margin-left: 10px; align-self: center; }
+
+        #mani-ebook-widget .card-actions button { background: none; border: none; cursor: pointer; transition: 0.3s; pointer-events: auto; padding: 10px; }
+
+        #mani-ebook-widget .card-actions button svg { stroke: var(--danger-color); width: 28px; height: 28px; transition: 0.3s; }
+
+        #mani-ebook-widget .card-actions button:hover svg { stroke: #ff0000; transform: scale(1.2); }
+
+
+
+        /* Animations */
+
+        @keyframes widgetBlastAndFall {
+
+            0% { transform: scale(1) rotate(0deg); filter: brightness(1); opacity: 1; }
+
+            15% { transform: scale(1.1) rotate(3deg); filter: brightness(1.5) drop-shadow(0 0 15px red); background-color: #fff0f0; }
+
+            30% { transform: scale(1.2) skewX(-10deg); filter: brightness(2) drop-shadow(0 0 25px orange); opacity: 1; }
+
+            50% { transform: scale(0.9) translateY(20px) rotate(-10deg); opacity: 0.8; }
+
+            100% { transform: scale(0) translateY(500px) rotate(45deg); opacity: 0; filter: brightness(0); }
+
+        }
+
+        #mani-ebook-widget .explode-fall { animation: widgetBlastAndFall 0.7s ease-in forwards !important; pointer-events: none; border-color: red !important; }
+
+
+
+        /* Skeleton Loading */
+
+        #mani-ebook-widget .skeleton { background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%); background-size: 200% 100%; animation: widgetShimmer 1.5s infinite; border-radius: 8px; border: 1px solid var(--border-color); }
+
+        @keyframes widgetShimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+
+        #mani-ebook-widget .skel-img { width: 100px; height: 150px; border-radius: 8px; flex-shrink: 0;}
+
+        #mani-ebook-widget .skel-text { height: 20px; margin-bottom: 10px; width: 80%; border-radius: 4px; }
+
+
+
+        /* Modals */
+
+        #mani-ebook-widget .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.85); backdrop-filter: blur(5px); z-index: 10000; justify-content: center; align-items: center; padding: 20px; }
+
+        #mani-ebook-widget .modal-content { background: var(--card-bg); padding: 30px; border-radius: 12px; width: 100%; max-width: 450px; box-shadow: 0 15px 40px rgba(0,0,0,0.15); border: 1px solid var(--border-color); pointer-events: auto; max-height: 90vh; overflow-y: auto; }
+
+        #mani-ebook-widget .modal-content h3 { margin-bottom: 20px; color: var(--primary-color); font-size: 24px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; }
+
+        #mani-ebook-widget .modal-content label { font-size: 14px; font-weight: bold; color: #555; display: block; margin-bottom: 6px; }
+
+        #mani-ebook-widget .modal-content input, #mani-ebook-widget .modal-content textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid var(--border-color); border-radius: 6px; background: #fafafa; color: var(--text-color); font-size: 15px; }
+
+        #mani-ebook-widget .modal-content input:focus, #mani-ebook-widget .modal-content textarea:focus { border-color: var(--primary-color); background: #fff; outline: none; }
+
+        #mani-ebook-widget .modal-content textarea { resize: vertical; } /* Allow resizing vertically */
+
+        #mani-ebook-widget .modal-btns { display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px; }
+
+        #mani-ebook-widget .modal-btns button { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; color: #fff; font-weight: bold; font-size: 15px; transition: 0.3s; }
+
+        #mani-ebook-widget .btn-cancel { background: #6c757d; }
+
+        #mani-ebook-widget .btn-cancel:hover { background: #5a6268; }
+
+        #mani-ebook-widget .btn-save { background: var(--primary-color); }
+
+        #mani-ebook-widget .btn-save:hover { background: #0056b3; }
+
+
+
+        /* PC & Mobile Responsive Adjustments */
+
+        @media (max-width: 768px) {
+
+            #mani-ebook-widget .login-box-container { padding: 3vh 10px 10px; }
+
+            #mani-ebook-widget header { padding: 10px 15px; }
+
+
+
+            /* ======== NEW: Mobile Layout for Header Controls ======== */
+
+            #mani-ebook-widget .header-right-controls {
+
+                flex-direction: row; /* Horizontal on mobile */
+
+                gap: 0;
+
+                width: 100%; /* Important for internal positioning */
+
+                justify-content: flex-end; /* Logout stays right */
+
+                position: relative; /* Context for profile pic */
+
+            }
+
+
+
+            /* Restore OLD MOBILE view (Profile in Center) but with TOP SPACING */
+
+            #mani-ebook-widget .profile-section { 
+
+                position: absolute;
+
+                left: 50%;
+
+                transform: translateX(-50%);
+
+                top: 15px; /* REQUIREMENT: Move profile picture slightly down on mobile */
+
+            }
+
+
+
+            /* Original mobile picture size */
+
+            #mani-ebook-widget .profile-pic { width: 60px; height: 60px; }
+
+
+
+            /* Logout container on mobile flows right naturally via flex-end of parent */
+
+            
+
+            /* Other mobile existing styles */
+
+            #mani-ebook-widget .dashboard-tools { flex-direction: column; text-align: center; }
+
+            #mani-ebook-widget .book-card { flex-direction: row; text-align: left; gap: 12px; padding: 12px; }
+
+            #mani-ebook-widget .book-card img { width: 85px; height: 130px; }
+
+            #mani-ebook-widget .book-details h3 { font-size: 18px; white-space: normal; } 
+
+            #mani-ebook-widget .book-details .author-name { font-size: 13px; margin-bottom: 6px; }
+
+            #mani-ebook-widget .book-details .book-desc-text { font-size: 12px; -webkit-line-clamp: 4; }
+
+            #mani-ebook-widget .card-actions { margin-left: 0; }
+
+            #mani-ebook-widget .card-actions button svg { width: 22px; height: 22px; }
+
+            #mani-ebook-widget .header-banner { height: 90px; }
+
+        }
+
+    </style>
+
+
+
+    <div class="toast-container" id="w-toast-container"></div>
+
+    <div class="preloader" id="w-preloader"><div class="loader"></div></div>
+
+
+
+    <div class="login-portal" id="w-login-portal">
+
+        <div class="top-brand-container">
+
+            <img src="https://cdn-icons-png.flaticon.com/512/3389/3389081.png" class="brand-logo-img" alt="Logo">
+
+        </div>
+
+        
+
+        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&h=200&q=80" class="header-banner" alt="Banner">
+
+
+
+        <div class="login-box-container">
+
+            <div class="login-box">
+
+                <img src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png" alt="Icon">
+
+                <h2>Portal Login</h2>
+
+                <input type="text" id="w-username" placeholder="Username" oninput="wClearError()">
+
+                <span class="error-text" id="w-user-err"></span>
+
+                <input type="password" id="w-password" placeholder="Password" oninput="wClearError()">
+
+                <span class="error-text" id="w-pass-err"></span>
+
+                
+
+                <button onclick="wAttemptLogin()">Secure Login</button>
+
+                <button class="btn-signup" onclick="window.location.href='https://your-signup-website.com'">Sign Up</button>
+
+            </div>
+
+        </div>
+
+        
+
+        <div class="login-footer">
+
+            &copy; Copyright Mani E-Book 2026 All Rights Reserved
+
+        </div>
+
+    </div>
+
+
+
+    <div class="dashboard" id="w-dashboard">
+
+        <header>
+
+            <div class="dash-logo">
+
+                <img src="https://cdn-icons-png.flaticon.com/512/3389/3389081.png" alt="Logo">
+
+            </div>
+
+
+
+            <div class="header-right-controls">
+
+                <div class="profile-section" title="Click to update profile">
+
+                    <div class="profile-header" onclick="wOpenProfileModal()">
+
+                        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" id="w-display-pic" class="profile-pic" alt="Profile">
+
+                    </div>
+
+                </div>
+
+                
+
+                <div class="logout-container">
+
+                    <button onclick="wLogout()" class="btn-logout"><i class="fas fa-sign-out-alt"></i></button>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <main class="main-container">
+
+            <div class="dashboard-tools">
+
+                <div class="author-greeting">
+
+                    <h2 id="w-greeting-name">User</h2>
+
+                    <p class="greeting-subtitle">Author Mani E-Book</p>
+
+                </div>
+
+                <button class="btn-add-book" onclick="wOpenBookModal()">+ Add New Book</button>
+
+            </div>
+
+            <div id="w-book-list"></div>
+
+        </main>
+
+    </div>
+
+
+
+    <div class="modal-overlay" id="w-profile-modal">
+
+        <div class="modal-content">
+
+            <h3 style="text-align: center; border-bottom: none; margin-bottom: 5px;">Update Profile</h3>
+
+            <p id="w-drop-name" style="text-align: center; font-weight: bold; margin-bottom: 25px; font-size: 18px; color: #555;">User</p>
+
+            
+
+            <label>Update Name:</label>
+
+            <input type="text" id="w-edit-name" placeholder="Enter new name">
+
+            
+
+            <label>Upload New Picture:</label>
+
+            <input type="file" id="w-edit-pic-file" accept="image/*" style="padding: 10px;">
+
+            
+
+            <div class="modal-btns">
+
+                <button class="btn-cancel" onclick="wCloseProfileModal()">Cancel</button>
+
+                <button class="btn-save" onclick="wSaveProfile()">Save Profile</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="modal-overlay" id="w-book-modal">
+
+        <div class="modal-content">
+
+            <h3>Add New Book</h3>
+
+            
+
+            <label>Book Title</label>
+
+            <input type="text" id="w-book-title" placeholder="Enter Book Title">
+
+            
+
+            <label>Author Name</label>
+
+            <input type="text" id="w-book-author" placeholder="Enter Author Name">
+
+            
+
+            <label>Upload Book Cover (Image)</label>
+
+            <input type="file" id="w-book-cover-file" accept="image/*" style="padding: 10px;">
+
+            
+
+            <label>Description</label>
+
+            <textarea id="w-book-desc" rows="4" placeholder="Enter short description about the book..."></textarea>
+
+            
+
+            <div class="modal-btns">
+
+                <button class="btn-cancel" onclick="wCloseBookModal()">Cancel</button>
+
+                <button class="btn-save" onclick="wSaveBook()">Save Book</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        // Zoom Protection strictly via meta tag insertion (to ensure mobile pinch-zoom is blocked safely)
+
+        (function() {
+
+            let meta = document.querySelector('meta[name="viewport"]');
+
+            if (!meta) {
+
+                meta = document.createElement('meta');
+
+                meta.name = "viewport";
+
+                document.head.appendChild(meta);
+
+            }
+
+            meta.content = "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
+
+        })();
+
+
+
+        // Database logic
+
+        const wDefaultUsersDatabase = {
+
+            "mani": {
+
+                password: "123",
+
+                books: [
+
+                    { 
+
+                        id: 1, 
+
+                        title: "HTML & CSS Mastery", 
+
+                        author: "Manish Chaudhary", 
+
+                        cover: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=150&q=80", 
+
+                        desc: "This is a comprehensive guide to mastering HTML and CSS for web development. Learn how to build responsive and beautiful websites from scratch." 
+
+                    }
+
+                ]
+
+            }
+
+        };
+
+
+
+        let wUsersDB = JSON.parse(localStorage.getItem('maniEbookDB_v4')); 
+
+        if (!wUsersDB) {
+
+            wUsersDB = wDefaultUsersDatabase;
+
+            wSafeSaveDB();
+
+        }
+
+
+
+        function wSafeSaveDB() {
+
+            try {
+
+                localStorage.setItem('maniEbookDB_v4', JSON.stringify(wUsersDB));
+
+                return true;
+
+            } catch (e) {
+
+                wShowToast("Memory Full! Cannot save data.", "error");
+
+                return false;
+
+            }
+
+        }
+
+
+
+        const wDefaultAvatar = "https://cdn-icons-png.flaticon.com/512/149/149071.png"; 
+
+        let wCurrentUser = null;
+
+
+
+        function wShowToast(message, type = "success") {
+
+            const container = document.getElementById('w-toast-container');
+
+            const toast = document.createElement('div');
+
+            toast.className = `toast ${type}`;
+
+            toast.innerHTML = message;
+
+            container.appendChild(toast);
+
+            setTimeout(() => toast.classList.add('show'), 10);
+
+            setTimeout(() => {
+
+                toast.classList.remove('show');
+
+                setTimeout(() => toast.remove(), 300);
+
+            }, 3000);
+
+        }
+
+
+
+        setTimeout(() => {
+
+            document.getElementById('w-preloader').style.display = 'none';
+
+            const savedUser = localStorage.getItem('activeUser_v4');
+
+            if (savedUser && wUsersDB[savedUser]) {
+
+                wCurrentUser = savedUser;
+
+                wShowDashboard();
+
+            } else {
+
+                document.getElementById('w-login-portal').style.display = 'flex';
+
+            }
+
+        }, 1000);
+
+
+
+        function wClearError() {
+
+            document.getElementById('w-username').classList.remove('invalid');
+
+            document.getElementById('w-password').classList.remove('invalid');
+
+            document.getElementById('w-user-err').innerText = "";
+
+            document.getElementById('w-pass-err').innerText = "";
+
+        }
+
+
+
+        function wAttemptLogin() {
+
+            const userBox = document.getElementById('w-username');
+
+            const passBox = document.getElementById('w-password');
+
+            const user = userBox.value.trim().toLowerCase();
+
+            const pass = passBox.value.trim();
+
+
+
+            if (!wUsersDB[user]) {
+
+                userBox.classList.add('invalid');
+
+                document.getElementById('w-user-err').innerText = "Username not found";
+
+                return;
+
+            }
+
+            if (wUsersDB[user].password !== pass) {
+
+                passBox.classList.add('invalid');
+
+                document.getElementById('w-pass-err').innerText = "Incorrect Password";
+
+                return;
+
+            }
+
+
+
+            wCurrentUser = user;
+
+            localStorage.setItem('activeUser_v4', wCurrentUser); 
+
+            userBox.value = ''; passBox.value = '';
+
+            
+
+            document.getElementById('w-login-portal').style.display = 'none';
+
+            document.getElementById('w-preloader').style.display = 'flex'; 
+
+            
+
+            setTimeout(() => {
+
+                document.getElementById('w-preloader').style.display = 'none'; 
+
+                wShowDashboard(); 
+
+                wShowToast(`Welcome, ${wCurrentUser}!`, "success");
+
+            }, 3000); 
+
+        }
+
+
+
+        function wLogout() {
+
+            localStorage.removeItem('activeUser_v4'); 
+
+            wCurrentUser = null;
+
+            document.getElementById('w-dashboard').style.display = 'none';
+
+            document.getElementById('w-login-portal').style.display = 'flex';
+
+        }
+
+
+
+        function wShowDashboard() {
+
+            document.getElementById('w-dashboard').style.display = 'flex';
+
+            wLoadProfile(); 
+
+            wRenderBooksWithSkeleton(); 
+
+        }
+
+
+
+        function wOpenProfileModal() {
+
+            document.getElementById('w-edit-name').value = "";
+
+            document.getElementById('w-edit-pic-file').value = "";
+
+            document.getElementById('w-profile-modal').style.display = "flex";
+
+        }
+
+
+
+        function wCloseProfileModal() {
+
+            document.getElementById('w-profile-modal').style.display = "none";
+
+        }
+
+
+
+        function wCompressImage(file, maxWidth, maxHeight, callback) {
+
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+
+                const img = new Image();
+
+                img.onload = function() {
+
+                    const canvas = document.createElement('canvas');
+
+                    let width = img.width;
+
+                    let height = img.height;
+
+                    if (width > height) {
+
+                        if (width > maxWidth) { height *= maxWidth / width; width = maxWidth; }
+
+                    } else {
+
+                        if (height > maxHeight) { width *= maxHeight / height; height = maxHeight; }
+
+                    }
+
+                    canvas.width = width;
+
+                    canvas.height = height;
+
+                    const ctx = canvas.getContext('2d');
+
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    callback(canvas.toDataURL('image/jpeg', 0.7));
+
+                }
+
+                img.src = event.target.result;
+
+            }
+
+            reader.readAsDataURL(file);
+
+        }
+
+
+
+        function wSaveProfile() {
+
+            const newName = document.getElementById('w-edit-name').value;
+
+            const fileInput = document.getElementById('w-edit-pic-file');
+
+
+
+            if (newName.trim() !== "") {
+
+                localStorage.setItem(wCurrentUser + '_name_v4', newName);
+
+                document.getElementById('w-greeting-name').innerText = newName;
+
+                document.getElementById('w-drop-name').innerText = newName;
+
+            }
+
+
+
+            if (fileInput.files && fileInput.files[0]) {
+
+                wCompressImage(fileInput.files[0], 200, 200, function(compressedData) {
+
+                    try {
+
+                        localStorage.setItem(wCurrentUser + '_pic_v4', compressedData);
+
+                        document.getElementById('w-display-pic').src = compressedData;
+
+                        wFinishProfileSave();
+
+                    } catch(e) {
+
+                        wShowToast("Storage Full! Image not saved.", "error");
+
+                    }
+
+                });
+
+            } else {
+
+                wFinishProfileSave();
+
+            }
+
+        }
+
+
+
+        function wFinishProfileSave() {
+
+            wCloseProfileModal();
+
+            wShowToast("Profile Updated!", "success");
+
+        }
+
+
+
+        function wLoadProfile() {
+
+            const savedName = localStorage.getItem(wCurrentUser + '_name_v4');
+
+            const displayName = savedName ? savedName : "User";
+
+            document.getElementById('w-greeting-name').innerText = displayName;
+
+            document.getElementById('w-drop-name').innerText = displayName;
+
+
+
+            const savedPic = localStorage.getItem(wCurrentUser + '_pic_v4');
+
+            document.getElementById('w-display-pic').src = savedPic ? savedPic : wDefaultAvatar;
+
+        }
+
+
+
+        function wRenderBooksWithSkeleton() {
+
+            const container = document.getElementById('w-book-list');
+
+            container.innerHTML = `<div class="book-card skeleton"><div class="skel-img"></div><div class="book-details"><div class="skel-text"></div><div class="skel-text" style="width:50%"></div></div></div>`;
+
+            setTimeout(() => { wRenderBooks(); }, 500);
+
+        }
+
+
+
+        function wRenderBooks() {
+
+            const container = document.getElementById('w-book-list');
+
+            container.innerHTML = ""; 
+
+            
+
+            if (!wUsersDB[wCurrentUser].books) wUsersDB[wCurrentUser].books = [];
+
+            const userBooks = wUsersDB[wCurrentUser].books;
+
+
+
+            if(userBooks.length === 0) {
+
+                container.innerHTML = "<p style='text-align:center; padding:30px; color:#777; font-size:18px; border: 2px dashed var(--border-color); border-radius: 10px;'>No books found.</p>";
+
+                return;
+
+            }
+
+
+
+            let htmlContent = "";
+
+            userBooks.forEach(book => {
+
+                htmlContent += `
+
+                    <div class="book-card">
+
+                        <img src="${book.cover}" onerror="this.src='https://via.placeholder.com/120x180?text=No+Cover'" alt="Cover">
+
+                        <div class="book-details">
+
+                            <h3>${book.title}</h3>
+
+                            <p class="author-name"><i class="fas fa-user-edit"></i> ${book.author || "Unknown Author"}</p>
+
+                            <p class="book-desc-text">${book.desc || "No description provided."}</p>
+
+                        </div>
+
+                        <div class="card-actions">
+
+                            <button class="del-btn" onclick="wDeleteBookWithAnimation(${book.id}, this)" title="Delete Book">
+
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+
+                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+
+                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+
+                                </svg>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            });
+
+            container.innerHTML = htmlContent;
+
+        }
+
+
+
+        function wDeleteBookWithAnimation(id, btnElement) {
+
+            if(confirm("Are you sure you want to delete this book?")) {
+
+                const card = btnElement.closest('.book-card');
+
+                card.classList.add('explode-fall'); 
+
+                
+
+                wUsersDB[wCurrentUser].books = wUsersDB[wCurrentUser].books.filter(b => b.id != id);
+
+                wSafeSaveDB();
+
+
+
+                setTimeout(() => {
+
+                    window.location.reload(); 
+
+                }, 700);
+
+            }
+
+        }
+
+
+
+        // ---UPDATED Modal Logic ---
+
+        function wOpenBookModal() {
+
+            document.getElementById('w-book-title').value = "";
+
+            document.getElementById('w-book-author').value = "";
+
+            document.getElementById('w-book-cover-file').value = "";
+
+            document.getElementById('w-book-desc').value = "";
+
+            document.getElementById('w-book-modal').style.display = "flex";
+
+        }
+
+
+
+        function wCloseBookModal() {
+
+            document.getElementById('w-book-modal').style.display = "none";
+
+        }
+
+
+
+        function wSaveBook() {
+
+            const title = document.getElementById('w-book-title').value;
+
+            const author = document.getElementById('w-book-author').value;
+
+            const desc = document.getElementById('w-book-desc').value;
+
+            const fileInput = document.getElementById('w-book-cover-file');
+
+
+
+            if(!title) { wShowToast("Book Title is required", "error"); return; }
+
+
+
+            if(fileInput.files && fileInput.files[0]) {
+
+                wCompressImage(fileInput.files[0], 200, 300, function(compressedCover) {
+
+                    wFinalizeSaveBook(title, author, desc, compressedCover);
+
+                });
+
+            } else {
+
+                const defaultCover = "https://via.placeholder.com/120x180?text=No+Cover";
+
+                wFinalizeSaveBook(title, author, desc, defaultCover);
+
+            }
+
+        }
+
+
+
+        function wFinalizeSaveBook(title, author, desc, cover) {
+
+            const newId = Date.now();
+
+            if (!wUsersDB[wCurrentUser].books) wUsersDB[wCurrentUser].books = [];
+
+            
+
+            wUsersDB[wCurrentUser].books.push({ id: newId, title, author, desc, cover });
+
+            
+
+            if(wSafeSaveDB()) {
+
+                wCloseBookModal();
+
+                wRenderBooks();
+
+                wShowToast("New book added successfully!");
+
+            } else {
+
+                wUsersDB[wCurrentUser].books.pop();
+
+            }
+
+        }
+
+    </script>
+
+</div>
+
