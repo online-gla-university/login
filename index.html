@@ -33,6 +33,9 @@
 
 
 
+
+
+
 <div id="mani-ebook-widget" oncontextmenu="return false;" oncopy="return false;" oncut="return false;">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -161,7 +164,7 @@
 
 
 
-        /* Login Portal */
+        /* Login Portal with Background Image & Footer Setup */
 
         #mani-ebook-widget .login-portal { 
 
@@ -196,8 +199,6 @@
         /* Smaller Login Box */
 
         #mani-ebook-widget .login-box { background: var(--card-bg); padding: 25px 20px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid var(--border-color); text-align: center; width: 100%; max-width: 320px; }
-
-        #mani-ebook-widget .login-box img { width: 65px; margin-bottom: 12px; }
 
         #mani-ebook-widget .login-box h2 { margin-bottom: 20px; font-size: 22px; color: var(--text-color); }
 
@@ -265,7 +266,7 @@
 
 
 
-        /* ======== Grouping Right side controls (PC Default) ======== */
+        /* ======== NEW: Grouping Right side controls (PC Default) ======== */
 
         #mani-ebook-widget .header-right-controls {
 
@@ -315,6 +316,16 @@
 
 
 
+        /* Logout Container Default (PC) */
+
+        #mani-ebook-widget .logout-container {
+
+            /* flows below profile pic naturally on PC */
+
+        }
+
+
+
         #mani-ebook-widget .btn-logout { 
 
             padding: 8px 15px; 
@@ -359,7 +370,7 @@
 
 
 
-        /* Book List */
+        /* Book List - Updated for new layout */
 
         #mani-ebook-widget .book-card { display: flex; flex-direction: row; background: var(--card-bg); margin-bottom: 20px; border-radius: 12px; padding: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px solid var(--border-color); align-items: flex-start; gap: 20px; text-align: left; transition: transform 0.3s, box-shadow 0.3s; overflow: hidden; }
 
@@ -376,6 +387,8 @@
         #mani-ebook-widget .book-details .author-name { font-size: 15px; margin-bottom: 10px; color: #333; font-weight: bold; }
 
         
+
+        /* Description styling with line clamp to keep UI clean */
 
         #mani-ebook-widget .book-details .book-desc-text { 
 
@@ -453,7 +466,7 @@
 
         #mani-ebook-widget .modal-content input:focus, #mani-ebook-widget .modal-content textarea:focus { border-color: var(--primary-color); background: #fff; outline: none; }
 
-        #mani-ebook-widget .modal-content textarea { resize: vertical; } 
+        #mani-ebook-widget .modal-content textarea { resize: vertical; } /* Allow resizing vertically */
 
         #mani-ebook-widget .modal-btns { display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px; }
 
@@ -473,7 +486,7 @@
 
         @media (max-width: 768px) {
 
-            #mani-ebook-widget .login-box-container { padding: 8vh 10px 10px; }
+            #mani-ebook-widget .login-box-container { padding: 3vh 10px 10px; }
 
             #mani-ebook-widget header { padding: 10px 15px; }
 
@@ -497,6 +510,8 @@
 
 
 
+            /* Restore OLD MOBILE view (Profile in Center) but with TOP SPACING */
+
             #mani-ebook-widget .profile-section { 
 
                 position: absolute;
@@ -511,9 +526,13 @@
 
 
 
+            /* Original mobile picture size */
+
             #mani-ebook-widget .profile-pic { width: 60px; height: 60px; }
 
 
+
+            /* Other mobile existing styles */
 
             #mani-ebook-widget .dashboard-tools { flex-direction: column; text-align: center; }
 
@@ -549,8 +568,6 @@
 
             <div class="login-box">
 
-                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi55ck3jO-v2iQHCzc7SMdN-r4B1j-jk06RofOWRJDxXS53Jy4wUgYwG2AYDJzU8n4vwu7QCOxzYRGgmhK4Ry9pYR79xiAdoskWMVvBtOPlGho7Yxe4FyC0Ch9OTNP3i0iWXwrmAzGWolG0hRsSVynwRGupgL7oqONJnKX_GKtdTqxnl5LNm6vLhw61pDBz/w400-h400/Copy%20of%20SGMC%20NEW.jpeg" alt="Icon">
-
                 <h2>Portal Login</h2>
 
                 <input type="text" id="w-username" placeholder="Username" oninput="wClearError()">
@@ -563,9 +580,7 @@
 
                 
 
-                <button onclick="wAttemptLogin()">Login</button>
-
-                <button class="btn-signup" onclick="window.location.href='https://your-signup-website.com'">Sign Up</button>
+                <button onclick="wAttemptLogin()">Secure Login</button>
 
             </div>
 
@@ -589,7 +604,7 @@
 
             <div class="dash-logo">
 
-                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi55ck3jO-v2iQHCzc7SMdN-r4B1j-jk06RofOWRJDxXS53Jy4wUgYwG2AYDJzU8n4vwu7QCOxzYRGgmhK4Ry9pYR79xiAdoskWMVvBtOPlGho7Yxe4FyC0Ch9OTNP3i0iWXwrmAzGWolG0hRsSVynwRGupgL7oqONJnKX_GKtdTqxnl5LNm6vLhw61pDBz/w400-h400/Copy%20of%20SGMC%20NEW.jpeg" alt="Logo">
+                <img src="https://cdn-icons-png.flaticon.com/512/3389/3389081.png" alt="Logo">
 
             </div>
 
@@ -727,601 +742,747 @@
 
 
 
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-storage-compat.js"></script>
+
+
+
     <script>
 
-        // Zoom Protection strictly via meta tag insertion (to ensure mobile pinch-zoom is blocked safely)
+        // Start of Scoped Widget Logic
 
         (function() {
 
-            let meta = document.querySelector('meta[name="viewport"]');
+            // ======== NEW: Firebase Initialization using User Config ========
 
-            if (!meta) {
+            const firebaseConfig = {
 
-                meta = document.createElement('meta');
+              apiKey: "AIzaSyBuaP_Pqt0PGrTOoiKCtenIg9ecTt6xbbw",
 
-                meta.name = "viewport";
+              authDomain: "mani-e-book-online.firebaseapp.com",
 
-                document.head.appendChild(meta);
+              projectId: "mani-e-book-online",
 
-            }
+              storageBucket: "mani-e-book-online.firebasestorage.app",
 
-            meta.content = "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
+              messagingSenderId: "114725857416",
 
-        })();
+              appId: "1:114725857416:web:b0db9dc80e8b991ab0d73d",
 
+              measurementId: "G-4EPDWC0XTK"
 
+            };
 
-        // Database logic
+            
 
-        const wDefaultUsersDatabase = {
+            // Initialize Firebase using compat mode for simple HTML integration
 
-            "mani": {
+            firebase.initializeApp(firebaseConfig);
 
-                password: "123",
+            const db = firebase.firestore();
 
-                books: [
-
-                    { 
-
-                        id: 1, 
-
-                        title: "HTML & CSS Mastery", 
-
-                        author: "Manish Chaudhary", 
-
-                        cover: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=150&q=80", 
-
-                        desc: "This is a comprehensive guide to mastering HTML and CSS for web development. Learn how to build responsive and beautiful websites from scratch." 
-
-                    }
-
-                ]
-
-            }
-
-        };
+            const storage = firebase.storage();
 
 
 
-        let wUsersDB = JSON.parse(localStorage.getItem('maniEbookDB_v4')); 
+            // Scoped variables
 
-        if (!wUsersDB) {
+            const wDefaultAvatar = "https://cdn-icons-png.flaticon.com/512/149/149071.png"; 
 
-            wUsersDB = wDefaultUsersDatabase;
-
-            wSafeSaveDB();
-
-        }
+            let wCurrentUsername = sessionStorage.getItem('activeUsername_v4'); // Session-based persistence cross device
 
 
 
-        function wSafeSaveDB() {
+            // Zoom Protection
 
-            try {
+            (function() {
 
-                localStorage.setItem('maniEbookDB_v4', JSON.stringify(wUsersDB));
+                let meta = document.querySelector('meta[name="viewport"]');
 
-                return true;
+                if (!meta) { meta = document.createElement('meta'); meta.name = "viewport"; document.head.appendChild(meta); }
 
-            } catch (e) {
+                meta.content = "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
 
-                wShowToast("Memory Full! Cannot save data.", "error");
-
-                return false;
-
-            }
-
-        }
+            })();
 
 
 
-        const wDefaultAvatar = "https://cdn-icons-png.flaticon.com/512/149/149071.png"; 
-
-        let wCurrentUser = null;
-
-
-
-        function wShowToast(message, type = "success") {
-
-            const container = document.getElementById('w-toast-container');
-
-            const toast = document.createElement('div');
-
-            toast.className = `toast ${type}`;
-
-            toast.innerHTML = message;
-
-            container.appendChild(toast);
-
-            setTimeout(() => toast.classList.add('show'), 10);
+            // Preloader logic
 
             setTimeout(() => {
 
-                toast.classList.remove('show');
+                document.getElementById('w-preloader').style.display = 'none';
 
-                setTimeout(() => toast.remove(), 300);
+                if (wCurrentUsername) {
 
-            }, 3000);
+                    wShowDashboard();
 
-        }
+                } else {
+
+                    document.getElementById('w-login-portal').style.display = 'flex';
+
+                }
+
+            }, 1000);
 
 
 
-        setTimeout(() => {
+            // Toast Notifications
 
-            document.getElementById('w-preloader').style.display = 'none';
+            function wShowToast(message, type = "success") {
 
-            const savedUser = localStorage.getItem('activeUser_v4');
+                const container = document.getElementById('w-toast-container');
 
-            if (savedUser && wUsersDB[savedUser]) {
+                const toast = document.createElement('div');
 
-                wCurrentUser = savedUser;
+                toast.className = `toast ${type}`;
 
-                wShowDashboard();
+                toast.innerHTML = message;
 
-            } else {
+                container.appendChild(toast);
+
+                setTimeout(() => toast.classList.add('show'), 10);
+
+                setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 3000);
+
+            }
+
+
+
+            // ======== REFACTORED Login using Firestore ========
+
+            function wClearError() {
+
+                document.getElementById('w-username').classList.remove('invalid');
+
+                document.getElementById('w-password').classList.remove('invalid');
+
+                document.getElementById('w-user-err').innerText = "";
+
+                document.getElementById('w-pass-err').innerText = "";
+
+            }
+
+
+
+            async function wAttemptLogin() {
+
+                const userBox = document.getElementById('w-username');
+
+                const passBox = document.getElementById('w-password');
+
+                const user = userBox.value.trim().toLowerCase();
+
+                const pass = passBox.value.trim();
+
+
+
+                if (!user || !pass) {
+
+                    if(!user) { userBox.classList.add('invalid'); document.getElementById('w-user-err').innerText = "Required"; }
+
+                    if(!pass) { passBox.classList.add('invalid'); document.getElementById('w-pass-err').innerText = "Required"; }
+
+                    return;
+
+                }
+
+
+
+                wClearError();
+
+                document.getElementById('w-preloader').style.display = 'flex'; 
+
+
+
+                try {
+
+                    // Firestore query: find user doc with given username
+
+                    const querySnapshot = await db.collection("users").where("username", "==", user).get();
+
+                    
+
+                    document.getElementById('w-preloader').style.display = 'none';
+
+
+
+                    if (querySnapshot.empty) {
+
+                        userBox.classList.add('invalid');
+
+                        document.getElementById('w-user-err').innerText = "Username not found";
+
+                        return;
+
+                    }
+
+
+
+                    const userDoc = querySnapshot.docs[0];
+
+                    const userData = userDoc.data();
+
+
+
+                    if (userData.password !== pass) {
+
+                        passBox.classList.add('invalid');
+
+                        document.getElementById('w-pass-err').innerText = "Incorrect Password";
+
+                        return;
+
+                    }
+
+
+
+                    // Success
+
+                    wCurrentUsername = user;
+
+                    sessionStorage.setItem('activeUsername_v4', user); // Persistent cross device for this session
+
+                    userBox.value = ''; passBox.value = '';
+
+                    
+
+                    document.getElementById('w-login-portal').style.display = 'none';
+
+                    wShowDashboard(); 
+
+                    wShowToast(`Welcome, ${wCurrentUsername}!`);
+
+
+
+                } catch (error) {
+
+                    document.getElementById('w-preloader').style.display = 'none';
+
+                    wShowToast("Database error. Try again.", "error");
+
+                    console.error("Login error:", error);
+
+                }
+
+            }
+
+
+
+            function wLogout() {
+
+                sessionStorage.removeItem('activeUsername_v4'); 
+
+                wCurrentUsername = null;
+
+                document.getElementById('w-dashboard').style.display = 'none';
 
                 document.getElementById('w-login-portal').style.display = 'flex';
 
             }
 
-        }, 1000);
 
 
+            async function wShowDashboard() {
 
-        function wClearError() {
+                document.getElementById('w-dashboard').style.display = 'flex';
 
-            document.getElementById('w-username').classList.remove('invalid');
+                await wLoadProfile(); 
 
-            document.getElementById('w-password').classList.remove('invalid');
-
-            document.getElementById('w-user-err').innerText = "";
-
-            document.getElementById('w-pass-err').innerText = "";
-
-        }
-
-
-
-        function wAttemptLogin() {
-
-            const userBox = document.getElementById('w-username');
-
-            const passBox = document.getElementById('w-password');
-
-            const user = userBox.value.trim().toLowerCase();
-
-            const pass = passBox.value.trim();
-
-
-
-            if (!wUsersDB[user]) {
-
-                userBox.classList.add('invalid');
-
-                document.getElementById('w-user-err').innerText = "Username not found";
-
-                return;
-
-            }
-
-            if (wUsersDB[user].password !== pass) {
-
-                passBox.classList.add('invalid');
-
-                document.getElementById('w-pass-err').innerText = "Incorrect Password";
-
-                return;
+                await wRenderBooksWithSkeleton(); 
 
             }
 
 
 
-            wCurrentUser = user;
+            // ======== REFACTORED Profile using Firestore & Storage ========
 
-            localStorage.setItem('activeUser_v4', wCurrentUser); 
+            function wOpenProfileModal() {
 
-            userBox.value = ''; passBox.value = '';
+                document.getElementById('w-edit-name').value = "";
 
-            
+                document.getElementById('w-edit-pic-file').value = "";
 
-            document.getElementById('w-login-portal').style.display = 'none';
+                document.getElementById('w-profile-modal').style.display = "flex";
 
-            document.getElementById('w-preloader').style.display = 'flex'; 
-
-            
-
-            setTimeout(() => {
-
-                document.getElementById('w-preloader').style.display = 'none'; 
-
-                wShowDashboard(); 
-
-                wShowToast(`Welcome, ${wCurrentUser}!`, "success");
-
-            }, 3000); 
-
-        }
+            }
 
 
 
-        function wLogout() {
-
-            localStorage.removeItem('activeUser_v4'); 
-
-            wCurrentUser = null;
-
-            document.getElementById('w-dashboard').style.display = 'none';
-
-            document.getElementById('w-login-portal').style.display = 'flex';
-
-        }
+            function wCloseProfileModal() { document.getElementById('w-profile-modal').style.display = "none"; }
 
 
 
-        function wShowDashboard() {
+            // Image Compression wrapped in promise
 
-            document.getElementById('w-dashboard').style.display = 'flex';
+            function wCompressImage(file, maxWidth, maxHeight) {
 
-            wLoadProfile(); 
+                return new Promise((resolve, reject) => {
 
-            wRenderBooksWithSkeleton(); 
+                    const reader = new FileReader();
 
-        }
+                    reader.onload = event => {
+
+                        const img = new Image();
+
+                        img.onload = () => {
+
+                            const canvas = document.createElement('canvas');
+
+                            let width = img.width, height = img.height;
+
+                            if (width > height) { if (width > maxWidth) { height *= maxWidth / width; width = maxWidth; } } 
+
+                            else { if (height > maxHeight) { width *= maxHeight / height; height = maxHeight; } }
+
+                            canvas.width = width; canvas.height = height;
+
+                            canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+
+                            resolve(canvas.toDataURL('image/jpeg', 0.7)); // base64
+
+                        };
+
+                        img.onerror = reject;
+
+                        img.src = event.target.result;
+
+                    };
+
+                    reader.onerror = reject;
+
+                    reader.readAsDataURL(file);
+
+                });
+
+            }
 
 
 
-        function wOpenProfileModal() {
+            async function wSaveProfile() {
 
-            document.getElementById('w-edit-name').value = "";
+                const newName = document.getElementById('w-edit-name').value;
 
-            document.getElementById('w-edit-pic-file').value = "";
-
-            document.getElementById('w-profile-modal').style.display = "flex";
-
-        }
+                const fileInput = document.getElementById('w-edit-pic-file');
 
 
 
-        function wCloseProfileModal() {
+                const updates = {};
 
-            document.getElementById('w-profile-modal').style.display = "none";
-
-        }
+                if (newName.trim()) updates.displayName = newName;
 
 
 
-        function wCompressImage(file, maxWidth, maxHeight, callback) {
+                document.getElementById('w-preloader').style.display = 'flex';
 
-            const reader = new FileReader();
 
-            reader.onload = function(event) {
 
-                const img = new Image();
+                try {
 
-                img.onload = function() {
+                    if (fileInput.files && fileInput.files[0]) {
 
-                    const canvas = document.createElement('canvas');
+                        // Compress, Upload to Storage, get URL, update Firestore
 
-                    let width = img.width;
+                        const compressedBase64 = await wCompressImage(fileInput.files[0], 200, 200);
 
-                    let height = img.height;
+                        
 
-                    if (width > height) {
+                        // Create reference in Storage
 
-                        if (width > maxWidth) { height *= maxWidth / width; width = maxWidth; }
+                        const storageRef = storage.ref().child(`users/${wCurrentUsername}/profile_pic.jpg`);
 
-                    } else {
+                        // Upload base64 string
 
-                        if (height > maxHeight) { width *= maxHeight / height; height = maxHeight; }
+                        await storageRef.putString(compressedBase64, 'data_url');
+
+                        // Get URL
+
+                        const picUrl = await storageRef.getDownloadURL();
+
+                        updates.profilePicUrl = picUrl;
 
                     }
 
-                    canvas.width = width;
 
-                    canvas.height = height;
 
-                    const ctx = canvas.getContext('2d');
+                    // Update or create user document in Firestore (create doc with merge so it exists)
 
-                    ctx.drawImage(img, 0, 0, width, height);
+                    await db.collection("users").doc(wCurrentUsername).set(updates, { merge: true });
 
-                    callback(canvas.toDataURL('image/jpeg', 0.7));
+                    
+
+                    await wLoadProfile(); // Refresh UI
+
+                    wCloseProfileModal();
+
+                    wShowToast("Profile Updated!");
+
+
+
+                } catch (error) {
+
+                    wShowToast("Error updating profile.", "error");
+
+                    console.error("Profile update error:", error);
+
+                } finally {
+
+                    document.getElementById('w-preloader').style.display = 'none';
 
                 }
 
-                img.src = event.target.result;
-
-            }
-
-            reader.readAsDataURL(file);
-
-        }
-
-
-
-        function wSaveProfile() {
-
-            const newName = document.getElementById('w-edit-name').value;
-
-            const fileInput = document.getElementById('w-edit-pic-file');
-
-
-
-            if (newName.trim() !== "") {
-
-                localStorage.setItem(wCurrentUser + '_name_v4', newName);
-
-                document.getElementById('w-greeting-name').innerText = newName;
-
-                document.getElementById('w-drop-name').innerText = newName;
-
             }
 
 
 
-            if (fileInput.files && fileInput.files[0]) {
+            async function wLoadProfile() {
 
-                wCompressImage(fileInput.files[0], 200, 200, function(compressedData) {
+                const greetingName = document.getElementById('w-greeting-name');
 
-                    try {
+                const dropName = document.getElementById('w-drop-name');
 
-                        localStorage.setItem(wCurrentUser + '_pic_v4', compressedData);
+                const displayPic = document.getElementById('w-display-pic');
 
-                        document.getElementById('w-display-pic').src = compressedData;
 
-                        wFinishProfileSave();
 
-                    } catch(e) {
+                try {
 
-                        wShowToast("Storage Full! Image not saved.", "error");
+                    // Fetch user doc from Firestore
+
+                    const userDoc = await db.collection("users").doc(wCurrentUsername).get();
+
+                    if (userDoc.exists) {
+
+                        const userData = userDoc.data();
+
+                        greetingName.innerText = userData.displayName || "User";
+
+                        dropName.innerText = userData.displayName || "User";
+
+                        displayPic.src = userData.profilePicUrl || wDefaultAvatar;
+
+                    } else {
+
+                        // New user without profile doc yet
+
+                        greetingName.innerText = "User"; dropName.innerText = "User"; displayPic.src = wDefaultAvatar;
 
                     }
 
-                });
-
-            } else {
-
-                wFinishProfileSave();
-
-            }
-
-        }
-
-
-
-        function wFinishProfileSave() {
-
-            wCloseProfileModal();
-
-            wShowToast("Profile Updated!", "success");
-
-        }
-
-
-
-        function wLoadProfile() {
-
-            const savedName = localStorage.getItem(wCurrentUser + '_name_v4');
-
-            const displayName = savedName ? savedName : "User";
-
-            document.getElementById('w-greeting-name').innerText = displayName;
-
-            document.getElementById('w-drop-name').innerText = displayName;
-
-
-
-            const savedPic = localStorage.getItem(wCurrentUser + '_pic_v4');
-
-            document.getElementById('w-display-pic').src = savedPic ? savedPic : wDefaultAvatar;
-
-        }
-
-
-
-        function wRenderBooksWithSkeleton() {
-
-            const container = document.getElementById('w-book-list');
-
-            container.innerHTML = `<div class="book-card skeleton"><div class="skel-img"></div><div class="book-details"><div class="skel-text"></div><div class="skel-text" style="width:50%"></div></div></div>`;
-
-            setTimeout(() => { wRenderBooks(); }, 500);
-
-        }
-
-
-
-        function wRenderBooks() {
-
-            const container = document.getElementById('w-book-list');
-
-            container.innerHTML = ""; 
-
-            
-
-            if (!wUsersDB[wCurrentUser].books) wUsersDB[wCurrentUser].books = [];
-
-            const userBooks = wUsersDB[wCurrentUser].books;
-
-
-
-            if(userBooks.length === 0) {
-
-                container.innerHTML = "<p style='text-align:center; padding:30px; color:#777; font-size:18px; border: 2px dashed var(--border-color); border-radius: 10px;'>No books found.</p>";
-
-                return;
+                } catch (error) { console.error("Error loading profile:", error); }
 
             }
 
 
 
-            let htmlContent = "";
+            // ======== REFACTORED Books using Firestore & Storage ========
 
-            userBooks.forEach(book => {
+            async function wRenderBooksWithSkeleton() {
 
-                htmlContent += `
+                const container = document.getElementById('w-book-list');
 
-                    <div class="book-card">
+                container.innerHTML = `<div class="book-card skeleton"><div class="skel-img"></div><div class="book-details"><div class="skel-text"></div><div class="skel-text" style="width:50%"></div></div></div>`;
 
-                        <img src="${book.cover}" onerror="this.src='https://via.placeholder.com/120x180?text=No+Cover'" alt="Cover">
-
-                        <div class="book-details">
-
-                            <h3>${book.title}</h3>
-
-                            <p class="author-name"><i class="fas fa-user-edit"></i> ${book.author || "Unknown Author"}</p>
-
-                            <p class="book-desc-text">${book.desc || "No description provided."}</p>
-
-                        </div>
-
-                        <div class="card-actions">
-
-                            <button class="del-btn" onclick="wDeleteBookWithAnimation(${book.id}, this)" title="Delete Book">
-
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-
-                                    <polyline points="3 6 5 6 21 6"></polyline>
-
-                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-
-                                    <line x1="10" y1="11" x2="10" y2="17"></line>
-
-                                    <line x1="14" y1="11" x2="14" y2="17"></line>
-
-                                </svg>
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                `;
-
-            });
-
-            container.innerHTML = htmlContent;
-
-        }
-
-
-
-        function wDeleteBookWithAnimation(id, btnElement) {
-
-            if(confirm("Are you sure you want to delete this book?")) {
-
-                const card = btnElement.closest('.book-card');
-
-                card.classList.add('explode-fall'); 
-
-                
-
-                wUsersDB[wCurrentUser].books = wUsersDB[wCurrentUser].books.filter(b => b.id != id);
-
-                wSafeSaveDB();
-
-
-
-                setTimeout(() => {
-
-                    window.location.reload(); 
-
-                }, 700);
+                await wRenderBooks();
 
             }
 
-        }
+
+
+            async function wRenderBooks() {
+
+                const container = document.getElementById('w-book-list');
+
+                container.innerHTML = ""; 
 
 
 
-        function wOpenBookModal() {
+                try {
 
-            document.getElementById('w-book-title').value = "";
+                    // Fetch user's books subcollection from Firestore
 
-            document.getElementById('w-book-author').value = "";
+                    const booksSnapshot = await db.collection("users").doc(wCurrentUsername).collection("books").get();
 
-            document.getElementById('w-book-cover-file').value = "";
+                    
 
-            document.getElementById('w-book-desc').value = "";
+                    if(booksSnapshot.empty) {
 
-            document.getElementById('w-book-modal').style.display = "flex";
+                        container.innerHTML = "<p style='text-align:center; padding:30px; color:#777; font-size:18px; border: 2px dashed var(--border-color); border-radius: 10px;'>No books found.</p>";
 
-        }
+                        return;
 
-
-
-        function wCloseBookModal() {
-
-            document.getElementById('w-book-modal').style.display = "none";
-
-        }
+                    }
 
 
 
-        function wSaveBook() {
+                    let htmlContent = "";
 
-            const title = document.getElementById('w-book-title').value;
+                    booksSnapshot.forEach(doc => {
 
-            const author = document.getElementById('w-book-author').value;
+                        const book = doc.data();
 
-            const desc = document.getElementById('w-book-desc').value;
-
-            const fileInput = document.getElementById('w-book-cover-file');
+                        book.id = doc.id; // use doc ID as key
 
 
 
-            if(!title) { wShowToast("Book Title is required", "error"); return; }
+                        htmlContent += `
+
+                            <div class="book-card">
+
+                                <img src="${book.cover}" onerror="this.src='https://via.placeholder.com/120x180?text=No+Cover'" alt="Cover">
+
+                                <div class="book-details">
+
+                                    <h3>${book.title}</h3>
+
+                                    <p class="author-name"><i class="fas fa-user-edit"></i> ${book.author || "Unknown Author"}</p>
+
+                                    <p class="book-desc-text">${book.desc || "No description provided."}</p>
+
+                                </div>
+
+                                <div class="card-actions">
+
+                                    <button class="del-btn" onclick="wDeleteBookWithAnimation('${book.id}', this)" title="Delete Book">
+
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+                                            <polyline points="3 6 5 6 21 6"></polyline>
+
+                                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+
+                                            <line x1="10" y1="11" x2="10" y2="17"></line>
+
+                                            <line x1="14" y1="11" x2="14" y2="17"></line>
+
+                                        </svg>
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        `;
+
+                    });
+
+                    container.innerHTML = htmlContent;
 
 
 
-            if(fileInput.files && fileInput.files[0]) {
+                } catch (error) {
 
-                wCompressImage(fileInput.files[0], 200, 300, function(compressedCover) {
+                    wShowToast("Error loading books.", "error");
 
-                    wFinalizeSaveBook(title, author, desc, compressedCover);
+                    console.error("Render books error:", error);
 
-                });
-
-            } else {
-
-                const defaultCover = "https://via.placeholder.com/120x180?text=No+Cover";
-
-                wFinalizeSaveBook(title, author, desc, defaultCover);
+                }
 
             }
 
-        }
 
 
+            async function wDeleteBookWithAnimation(bookId, btnElement) {
 
-        function wFinalizeSaveBook(title, author, desc, cover) {
+                if(confirm("Are you sure you want to delete this book?")) {
 
-            const newId = Date.now();
+                    const card = btnElement.closest('.book-card');
 
-            if (!wUsersDB[wCurrentUser].books) wUsersDB[wCurrentUser].books = [];
+                    card.classList.add('explode-fall'); 
 
-            
+                    
 
-            wUsersDB[wCurrentUser].books.push({ id: newId, title, author, desc, cover });
+                    try {
 
-            
+                        // Delete document from user's books collection in Firestore
 
-            if(wSafeSaveDB()) {
+                        await db.collection("users").doc(wCurrentUsername).collection("books").doc(bookId).delete();
 
-                wCloseBookModal();
+                        setTimeout(() => { wRenderBooks(); }, 700); // Re-render after animation
 
-                wRenderBooks();
+                    } catch (error) {
 
-                wShowToast("New book added successfully!");
+                        card.classList.remove('explode-fall');
 
-            } else {
+                        wShowToast("Error deleting book.", "error");
 
-                wUsersDB[wCurrentUser].books.pop();
+                        console.error("Delete book error:", error);
+
+                    }
+
+                }
 
             }
 
-        }
+
+
+            function wOpenBookModal() {
+
+                document.getElementById('w-book-title').value = "";
+
+                document.getElementById('w-book-author').value = "";
+
+                document.getElementById('w-book-cover-file').value = "";
+
+                document.getElementById('w-book-desc').value = "";
+
+                document.getElementById('w-book-modal').style.display = "flex";
+
+            }
+
+
+
+            function wCloseBookModal() { document.getElementById('w-book-modal').style.display = "none"; }
+
+
+
+            async function wSaveBook() {
+
+                const title = document.getElementById('w-book-title').value;
+
+                const author = document.getElementById('w-book-author').value;
+
+                const desc = document.getElementById('w-book-desc').value;
+
+                const fileInput = document.getElementById('w-book-cover-file');
+
+
+
+                if(!title) { wShowToast("Book Title is required", "error"); return; }
+
+
+
+                document.getElementById('w-preloader').style.display = 'flex';
+
+
+
+                try {
+
+                    if(fileInput.files && fileInput.files[0]) {
+
+                        // Compress, Upload to Storage, get URL, create in Firestore
+
+                        const compressedBase64 = await wCompressImage(fileInput.files[0], 200, 300);
+
+                        await wFinalizeSaveBook(title, author, desc, compressedBase64);
+
+                    } else {
+
+                        // default cover
+
+                        await wFinalizeSaveBook(title, author, desc, null);
+
+                    }
+
+                } catch (error) {
+
+                    wShowToast("Error saving book cover.", "error");
+
+                    console.error("Book save image error:", error);
+
+                    document.getElementById('w-preloader').style.display = 'none';
+
+                }
+
+            }
+
+
+
+            async function wFinalizeSaveBook(title, author, desc, coverBase64) {
+
+                try {
+
+                    let coverUrl = "https://via.placeholder.com/120x180?text=No+Cover";
+
+
+
+                    if (coverBase64) {
+
+                        // Upload Cover to Storage
+
+                        const fileName = `${title.replace(/\s+/g, '_')}_${Date.now()}.jpg`;
+
+                        const storageRef = storage.ref().child(`users/${wCurrentUsername}/books/${fileName}`);
+
+                        await storageRef.putString(coverBase64, 'data_url');
+
+                        coverUrl = await storageRef.getDownloadURL();
+
+                    }
+
+
+
+                    // Book Data for Firestore
+
+                    const bookData = { title, author, desc, cover: coverUrl };
+
+
+
+                    // Add to user's books subcollection in Firestore
+
+                    await db.collection("users").doc(wCurrentUsername).collection("books").add(bookData);
+
+
+
+                    // Ensure user document exists with basic structure for rules etc (merge so no overwrite)
+
+                    await db.collection("users").doc(wCurrentUsername).set({displayName: "User"}, { merge: true });
+
+
+
+                    wCloseBookModal();
+
+                    await wRenderBooks();
+
+                    wShowToast("New book added successfully!");
+
+
+
+                } catch (error) {
+
+                    wShowToast("Error saving book data.", "error");
+
+                    console.error("Finalize save book error:", error);
+
+                } finally {
+
+                    document.getElementById('w-preloader').style.display = 'none';
+
+                }
+
+            }
+
+
+
+            // Expose needed functions to global scope for HTML clicks
+
+            window.wAttemptLogin = wAttemptLogin;
+
+            window.wClearError = wClearError;
+
+            window.wLogout = wLogout;
+
+            window.wOpenProfileModal = wOpenProfileModal;
+
+            window.wCloseProfileModal = wCloseProfileModal;
+
+            window.wSaveProfile = wSaveProfile;
+
+            window.wDeleteBookWithAnimation = wDeleteBookWithAnimation;
+
+            window.wOpenBookModal = wOpenBookModal;
+
+            window.wCloseBookModal = wCloseBookModal;
+
+            window.wSaveBook = wSaveBook;
+
+
+
+        })();
 
     </script>
 
